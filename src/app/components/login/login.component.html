@@ -1,0 +1,20 @@
+<div class="container login-form-container col-10 col-sm-10 col-md-6 col-lg-6 col-xl-5">
+  <h3>LogIn</h3>
+  <p>Fill in the data below.</p>
+    <form [formGroup]="loginForm" (ngSubmit)="login()" style="border-width: 100px; border-color: white;">
+      <div class="mb-3 field">
+        <!-- <label for="exampleInputEmail1" class="form-label-text1">Email address</label> -->
+        <input type="email" class="form-control input" id="inputEmail" formControlName="email" placeholder="Email address" aria-describedby="emailHelp">
+        
+      </div>
+      <div class="mb-3 field">
+        <!-- <label for="exampleInputPassword1" class="form-label-text1">Password</label> -->
+        <input type="password" class="form-control input" id="inputPassword" formControlName="password" placeholder="Password">
+      </div>
+      <!-- <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label-text1" for="exampleCheck1">Check me out</label>
+      </div> -->
+      <button type="submit" class="btn btn-primary" [disabled]="this.loginForm.invalid">LogIn</button>
+    </form>
+</div>

@@ -1,0 +1,126 @@
+<div class="container login-form-container col-10 col-sm-10 col-md-6 col-lg-6 col-xl-5">
+    <h3>Register</h3>
+    <p>Fill in the data below.</p>
+      <form [formGroup]="registerForm" (ngSubmit)="submitRegisterUser()" style="border-width: 100px; border-color: white;">
+        <!-- NAME -->
+        <div class="mb-3 field">
+          <input type="text" class="form-control input" formControlName="name" id="inputName" placeholder="Name"
+          [class.is-invalid]="isInvalid('name')">
+          @if (isInvalid('name')) {
+            <div class="error-message">
+              @if(this.registerForm.get('name')?.hasError('required') ){
+                <p>Name field is required</p>
+              }
+              @if(this.registerForm.get('name')?.hasError('minlength') ){
+                <p>Name must be at least 5 characters long</p>
+              }
+            </div>
+          }
+        </div>
+      
+        <!-- SURNAME -->
+        <div class="mb-3 field">
+          <input type="text" class="form-control" formControlName="surname" id="inputSurname" placeholder="Surname"
+          [class.is-invalid]="isInvalid('surname')">
+          @if (isInvalid('surname')) {
+            <div class="error-message">
+              @if(this.registerForm.get('surname')?.hasError('required') ){
+                <p>Surname field is required</p>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- PHONE NUMBER -->
+        <div class="mb-3 field">
+          <input type="text" class="form-control" formControlName="phoneNumber" id="inputPhoneNumber" placeholder="Phone number"
+          [class.is-invalid]="isInvalid('phoneNumber')">
+          @if (isInvalid('phoneNumber')) {
+            <div class="error-message">
+              @if(this.registerForm.get('phoneNumber')?.hasError('pattern')){
+                <p>Phone must have 9 digits</p>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- EMAIL ADDRESS -->
+        <div class="mb-3 field">
+          <!-- <label for="exampleInputEmail1" class="form-label-text1">Email address</label> -->
+          <input type="email" class="form-control" formControlName="email" id="inputEmail" placeholder="Email address" aria-describedby="emailHelp"
+          [class.is-invalid]="isInvalid('email')">
+          @if (isInvalid('email')) {
+            <div class="error-message">
+              @if(this.registerForm.get('email')?.hasError('required') ){
+                <p>Email field is required</p>
+              }
+              @if(this.registerForm.get('email')?.hasError('email') ){
+                <p>Email field is not an email</p>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- EMAIL ADDRESS CONFIRMATION -->
+        <div class="mb-3 field">
+          <!-- <label for="exampleInputEmail1" class="form-label-text1">Email address</label> -->
+          <input type="email" class="form-control" formControlName="confirmationEmail" id="inputEmailConfirmation" placeholder="Repeat email address" aria-describedby="emailHelp"
+          [class.is-invalid]="isInvalid('confirmationEmail')">
+          @if (isInvalid('confirmationEmail')) {
+            <div class="error-message">
+              @if(this.registerForm.get('confirmationEmail')?.hasError('required') ){
+                <p>Confirmation email field is required</p>
+              }
+              @if(this.registerForm.get('confirmationEmail')?.hasError('email') ){
+                <p>Confirmation email field is not an email</p>
+              }
+              @if(this.registerForm.get('confirmationEmail')?.hasError('mustMatch') ){
+                <p>Confirmation email and email don't match</p>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="mb-3 field">
+          <!-- <label for="exampleInputPassword1" class="form-label-text1">Password</label> -->
+          <input type="password" class="form-control" formControlName="password" id="inputPassword" placeholder="Password"
+          [class.is-invalid]="isInvalid('password')">
+          @if (isInvalid('password')) {
+            <div class="error-message">
+              @if(this.registerForm.get('password')?.hasError('required') ){
+                <p>Password field is required</p>
+              }
+              @if(this.registerForm.get('password')?.hasError('pattern') ){
+                <p>Password needs to have at least 8 characters, 1 capital letter, 1 number and 1 special character</p>
+              }
+              
+            </div>
+          }
+        </div>
+
+        <!-- PASSWORD CONFIRMATION -->
+        <div class="mb-3 field">
+          <!-- <label for="exampleInputPassword1" class="form-label-text1">Password</label> -->
+          <input type="password" class="form-control" formControlName="confirmationPassword" id="inputPasswordConfirmation" placeholder="Repeat password"
+          [class.is-invalid]="isInvalid('confirmationPassword')">
+          @if (isInvalid('confirmationPassword')) {
+            <div class="error-message">
+              @if(this.registerForm.get('confirmationPassword')?.hasError('required') ){
+                <p>Confirmation password field is required</p>
+              }
+              @if(this.registerForm.get('confirmationPassword')?.hasError('mustMatch') ){
+                <p>Confirmation password and Password don't match</p>
+              }
+              
+            </div>
+          }
+        </div>
+        
+        <!-- <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label-text1" for="exampleCheck1">Check me out</label>
+        </div> -->
+        <button type="submit" class="btn btn-primary" [disabled]="this.registerForm.invalid">Register</button>
+      </form>
+  </div>

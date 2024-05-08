@@ -1,0 +1,33 @@
+.bg-navbar {padding: 10; background-color: #133b4f;}
+.navbar-brand-logo{width: 12rem; margin-right: 1rem;}
+.navbar-text{
+    color: white;
+    font-weight: bold;
+    padding-top: 2rem;
+    font-size: 1.3rem;
+}
+.navbar-btn-search {
+    --bs-btn-color: #133b4f;
+    --bs-btn-border-color: #fff;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: transparent;
+    --bs-btn-hover-border-color: #fff;
+    --bs-btn-focus-shadow-rgb: 25, 135, 84;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #fff;
+    --bs-btn-active-border-color: #fff;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #5f0404;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #5f0404;
+    --bs-gradient: none;
+    --bs-btn-bg:white;
+    font-weight: bold;
+    border-width: 0.15rem;
+}
+
+.navbar-icon{
+    width: 1.5rem;
+    margin-bottom: 0.5rem;
+    height: 1.5rem;
+}
