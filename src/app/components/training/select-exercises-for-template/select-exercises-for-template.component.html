@@ -1,0 +1,14 @@
+<!-- select-exercises-for-template.component.html -->
+<!-- select-exercises-for-template.component.html -->
+<div class="container login-form-container col-10 col-sm-10 col-md-6 col-lg-6 col-xl-5">
+  <h3 class="my-4">Select Exercises for Template</h3>
+  <form [formGroup]="form" (ngSubmit)="anadirEjercicios()">
+    <div formArrayName="ejercicios">
+      <div *ngFor="let control of ejerciciosArray.controls; let i = index" class="exercise-item d-flex align-items-center mb-3 p-2 border rounded">
+        <input type="checkbox" [formControlName]="i" class="form-check-input me-3">
+        <p class="form-check-label mb-0">{{ (exercises$ | async)?.[i]?.name }}</p>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3 w-100">Add Selected Exercises</button>
+  </form>
+</div>

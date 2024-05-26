@@ -1,0 +1,43 @@
+<!-- icons.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="sleep-icon" viewBox="0 0 47 27">
+      <g clip-path="url(#clip0_47_2)">
+        <path d="M24.1072 0.964294H2.89287C1.82774 0.964294 0.964294 1.82774 0.964294 2.89287V24.1072C0.964294 25.1723 1.82774 26.0357 2.89287 26.0357H24.1072C25.1723 26.0357 26.0357 25.1723 26.0357 24.1072V2.89287C26.0357 1.82774 25.1723 0.964294 24.1072 0.964294Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13.5 6.75001H5.78571V0.964294" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M21.2143 0.964294V6.75001H13.5V0.964294" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M0.964294 11.5714H26.0357" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <path d="M32.327 8.66049H35.7365L32.1139 13.7748H35.9496" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M39.061 4.20804H42.2532L38.8615 8.99619H42.4526" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M39.8028 12.916H44.4471L39.5126 19.8822H44.7373" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <defs>
+        <clipPath id="clip0_47_2">
+          <rect width="47" height="27" fill="white"/>
+        </clipPath>
+      </defs>
+    </symbol>
+  
+    <symbol id="training-icon" viewBox="0 0 56 29">
+      <line x1="8.90002" y1="1.09278e-07" x2="8.90002" y2="28.8" stroke="currentColor" stroke-width="5"/>
+      <line x1="15.3" y1="1.09278e-07" x2="15.3" y2="28.8" stroke="currentColor" stroke-width="5"/>
+      <line x1="2.5" y1="9.60001" x2="2.5" y2="20.8" stroke="currentColor" stroke-width="5"/>
+      <line y1="-2.5" x2="28.8" y2="-2.5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 49.6 0)" stroke="currentColor" stroke-width="5"/>
+      <line y1="-2.5" x2="28.8" y2="-2.5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 43.2 0)" stroke="currentColor" stroke-width="5"/>
+      <line y1="-2.5" x2="11.2" y2="-2.5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 56 9.60001)" stroke="currentColor" stroke-width="5"/>
+      <line x1="19.2" y1="15.1" x2="36.8" y2="15.1" stroke="currentColor" stroke-width="5"/>
+    </symbol>
+  
+    <symbol id="diet-icon" viewBox="0 0 32 32">
+      <g clip-path="url(#clip0_10_318)">
+        <path d="M19.4286 30.8571V1.14285C28.5714 5.71428 29.7143 18.2857 29.7143 22.8571H19.4286" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 1.14285V30.8571" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13.7143 1.14285V6.85714C13.7143 7.60754 13.5665 8.3506 13.2793 9.0439C12.9921 9.73718 12.5712 10.3671 12.0406 10.8978C11.51 11.4284 10.88 11.8493 10.1868 12.1365C9.49345 12.4236 8.75039 12.5714 7.99999 12.5714C6.48447 12.5714 5.03101 11.9694 3.95937 10.8978C2.88774 9.82612 2.28571 8.37266 2.28571 6.85714V1.14285" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <defs>
+        <clipPath id="clip0_10_318">
+          <rect width="32" height="32" fill="white"/>
+        </clipPath>
+      </defs>
+    </symbol>
+  </svg>
+  

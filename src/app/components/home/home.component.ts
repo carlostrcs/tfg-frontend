@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalComponent } from '../modal/modal.component';
+import { ModalComponent } from '../modal/message/modal.component';
 declare var bootstrap: any;
 @Component({
   selector: 'app-home',

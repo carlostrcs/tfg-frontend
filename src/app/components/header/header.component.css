@@ -31,3 +31,15 @@
     margin-bottom: 0.5rem;
     height: 1.5rem;
 }
+
+.dropdown-menu-custom{
+    background-color: #3d6980;
+    border-radius: 1rem;
+    border-width: 0.2rem;
+    border-style: solid;
+    border-color: #133b4f;
+}
+
+.navbar-item-hover:hover{
+    color: gray;
+}

@@ -1,0 +1,35 @@
+<div class="container mt-2 login-form-container col-10 col-sm-10 col-md-6 col-lg-6 col-xl-5">
+    <h1 class="mb-5" style="color: white;">Training</h1>
+
+    <!-- Botones -->
+      <div class="row">
+        <div class="col-12 col-md mb-3 mb-md-0">
+          <button type="button" class="btn btn-primary btn-lg w-100" [routerLink]="['/newTemplate']">+New Template</button>
+        </div>
+        <div class="col-12 col-md mb-3 mb-md-0">
+          <button type="button" class="btn btn-secondary btn-lg w-100" [routerLink]="['/newEmptyTraining']">+New Empty Training</button>
+        </div>
+        <div class="col-12 col-md">
+          <button type="button" class="btn btn-success btn-lg w-100" [routerLink]="['/newExercise']">+New Exercise</button>
+        </div>
+      </div>
+  
+      
+
+    <!-- Lista de Contenedores -->
+    <div class="container-list" *ngFor="let template of templates">
+      <div class="mt-4">
+      <h2  style="color: white;">{{ template.name }}</h2>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let exercise of template.exercises">
+          {{ exercise.name }}
+          <ul>
+            <li *ngFor="let serie of exercise.series">
+              Repeticiones: {{ serie.repeticiones }}, Kilos: {{ serie.kilos }}
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>

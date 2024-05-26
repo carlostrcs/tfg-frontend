@@ -1,5 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { AuthService } from '../../../services/auth/auth.service';
+import { Router } from '@angular/router';
 declare var bootstrap: any;
 @Component({
   selector: 'app-modal',
@@ -13,7 +15,10 @@ export class ModalComponent {
   modal_message:string='';
   modal_title:string='';
   modal_action:string='';
-  constructor(){}
+  constructor(
+    private _authService:AuthService,
+    private _router:Router
+  ){}
   
   openModal(message:string): void {
    switch(message){
@@ -37,6 +42,13 @@ export class ModalComponent {
   }
 
   handleAction(){
-    console.log(this.modal_action);
+    if(this.modal_action=='logout'){
+      this._authService.logout();
+      this._router.navigate(['/login'])
+
+    } else if(this.modal_action=='deleteAccount'){
+      this._authService.deleteAccount();
+      this._router.navigate(['/register'])
+    }
   };
 }

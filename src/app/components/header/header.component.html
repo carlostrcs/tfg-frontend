@@ -1,4 +1,5 @@
 <app-modal id="myModal1" #myModal1></app-modal>
+
 <div>
     <nav class="navbar navbar-expand-lg bg-navbar" id="navBar">
       <div class="container">
@@ -11,57 +12,74 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isLoggedIn">
               <!-- <button class="navbar-toggler"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> -->
-              <a class="nav-link navbar-text" aria-current="page" href="#" [routerLink]="['/home']" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+              <a class="nav-link navbar-text navbar-item-hover" aria-current="page" href="#" [routerLink]="['/home']" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                 <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-house navbar-icon" viewBox="0 0 16 16">
                   <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
                 </svg> 
                 Home</a>
               <!-- </button> -->
             </li>
-            <li class="nav-item">
-              <a class="nav-link navbar-text" href="#" [routerLink]="['/login']" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <li class="nav-item"  *ngIf="!isLoggedIn">
+              <a class="nav-link navbar-text navbar-item-hover" href="#" [routerLink]="['/login']" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right navbar-icon" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
                     <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
                   </svg>
                 Login</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link navbar-text" href="#" [routerLink]="['/register']" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <li class="nav-item"  *ngIf="!isLoggedIn">
+                <a class="nav-link navbar-text navbar-item-hover" href="#" [routerLink]="['/register']" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open navbar-icon" viewBox="0 0 16 16">
                         <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"/>
                         <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z"/>
                       </svg>
                   Register</a>
             </li>
-            <li class="nav-item" (click)="openModal('logout')">
-              <a class="nav-link navbar-text" href="#" [routerLink]="['/exit']">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left navbar-icon" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
-                  <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+            <li class="nav-item"  *ngIf="isLoggedIn">
+              <a class="nav-link navbar-text navbar-item-hover" href="#" [routerLink]="['/training']" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <svg width="35" height="35" viewBox="0 0 56 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <use href="assets/icons/icons.svg#training-icon"></use>
                 </svg>
-                Logout</a>
+                Training</a>
             </li>
-            <li class="nav-item" (click)="openModal('deleteAccount')">
-              <a class="nav-link navbar-text" href="#" [routerLink]="['/deleteAccount']">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3 navbar-icon" viewBox="0 0 16 16">
-                  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+            <li class="nav-item"  *ngIf="isLoggedIn">
+              <a class="nav-link navbar-text navbar-item-hover" href="#" [routerLink]="['/diet']" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <svg width="25" height="25" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <use href="assets/icons/icons.svg#diet-icon"></use>
                 </svg>
-                Delete Account</a>
+                Diet</a>
             </li>
-            <!-- <li class="nav-item dropdown ">
-              <a class="nav-link navbar-text dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
+            <li class="nav-item"  *ngIf="isLoggedIn">
+              <a class="nav-link navbar-text navbar-item-hover" href="#" [routerLink]="['/sleep']" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <svg  width="40" height="40" viewBox="0 0 47 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <use href="assets/icons/icons.svg#sleep-icon"></use>
+                </svg>
+                Sleep</a>
+            </li>
+            <li class="nav-item dropdown " *ngIf="isLoggedIn">
+              <a class="nav-link navbar-text dropdown-toggle navbar-item-hover" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                More
               </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <ul class="dropdown-menu dropdown-menu-custom">
+                <li class=""  *ngIf="isLoggedIn" (click)="openModal('deleteAccount')">
+                  <a class="nav-link navbar-text navbar-item-hover" href="#" [routerLink]="['/deleteAccount']">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3 navbar-icon" viewBox="0 0 16 16">
+                      <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                    </svg>
+                    Delete Account</a>
+                </li>
+                <li class=""  *ngIf="isLoggedIn" (click)="openModal('logout')">
+                  <a class="nav-link navbar-text navbar-item-hover" href="#" [routerLink]="['/exit']">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left navbar-icon" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                      <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+                    </svg>
+                    Logout</a>
+                </li>
               </ul>
-            </li> -->
+            </li>
           </ul>
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
