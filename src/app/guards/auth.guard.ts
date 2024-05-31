@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
 
 export const AuthGuard = () => {
   const router = inject(Router);
-  if(localStorage.getItem('authToken')){
+  if(sessionStorage.getItem('authToken')){
     return true;
   }else{
     router.navigate(['/login']);

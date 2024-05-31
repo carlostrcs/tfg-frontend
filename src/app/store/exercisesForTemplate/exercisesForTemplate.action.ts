@@ -16,3 +16,7 @@ export const updateExerciseSeries = createAction(
     '[Exercises] Update Exercise Series',
     props<{ index: number, series: Serie[] }>()
  );
+
+export const resetWorkoutTemplate = createAction(
+  '[Exercises] Reset Workout Template'
+)

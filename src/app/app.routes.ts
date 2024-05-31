@@ -10,6 +10,8 @@ import { NewTrainingComponent } from './components/training/new-training/new-tra
 import { NewTemplateComponent } from './components/training/new-workout-template/new-workout-template.component';
 import { NewExerciseComponent } from './components/training/new-exercise/new-exercise.component';
 import { SelectExercisesForTemplateComponent } from './components/training/select-exercises-for-template/select-exercises-for-template.component';
+import { DayTemplateComponent } from './components/diet/day-template/day-template.component';
+import { SelectMealsForTemplateComponent } from './components/diet/select-meals-for-template/select-meals-for-template.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -18,6 +20,8 @@ export const routes: Routes = [
     {path:'register',component:RegisterComponent},
     {path:'training',component:TrainingComponent,canActivate:[AuthGuard]},
     {path:'diet',component:DietComponent,canActivate:[AuthGuard]},
+    {path:'dietDayTemplate',component:DayTemplateComponent,canActivate:[AuthGuard]},
+    {path:'selectMealsForTemplate',component:SelectMealsForTemplateComponent,canActivate:[AuthGuard]},
     {path:'sleep',component:SleepComponent,canActivate:[AuthGuard]},
     {path:'newEmptyTraining',component:NewTrainingComponent,canActivate:[AuthGuard]},
     {path:'newTemplate',component:NewTemplateComponent,canActivate:[AuthGuard]},

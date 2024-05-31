@@ -12,7 +12,7 @@ import { environment } from "../../environment";
     constructor(private _http:HttpClient) {}
   
     private hasToken(): boolean {
-      return !!localStorage.getItem('authToken');
+      return !!sessionStorage.getItem('authToken');
     }
   
     get isLoggedIn() {
@@ -20,17 +20,17 @@ import { environment } from "../../environment";
     }
   
     login(token: string): void {
-      localStorage.setItem('authToken', token);
+      sessionStorage.setItem('authToken', token);
       this.authStatus.next(true);
     }
   
     logout(): void {
-      localStorage.removeItem('authToken');
+      sessionStorage.removeItem('authToken');
       this.authStatus.next(false);
     }
 
     deleteAccount(): void {
-        localStorage.removeItem('authToken');
+        sessionStorage.removeItem('authToken');
         this.authStatus.next(false);
     }
 

@@ -23,7 +23,9 @@ export class TrainingComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private _databaseService:DatabaseService
-  ) {}
+  ) {
+    console.log("\nCREATING TRAINING COMPONENT\n")
+  }
 
   ngOnInit() {
     this.loadTemplates();

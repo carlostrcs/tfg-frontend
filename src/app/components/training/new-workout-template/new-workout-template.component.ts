@@ -9,7 +9,7 @@ import { AppState } from '../../../store/app.state';
 import { selectExercisesForTemplate } from '../../../store/exercisesForTemplate/exercisesForTemplate.selector';
 import { Exercise } from '../../../store/exercisesForTemplate/Exercise';
 import { ErrorModalComponent } from '../../modal/error/error.component';
-import { removeExercise, updateExerciseSeries } from '../../../store/exercisesForTemplate/exercisesForTemplate.action';
+import { removeExercise, resetWorkoutTemplate, updateExerciseSeries } from '../../../store/exercisesForTemplate/exercisesForTemplate.action';
 import { DatabaseService } from '../../../services/database/database.service';
 
 @Component({
@@ -31,6 +31,7 @@ export class NewTemplateComponent implements OnInit {
     private _databaseService:DatabaseService,
     private _router:Router
   ) {
+    console.log("\nCREATING NEW WORKOUT TEMPLATE COMPONENT\n")
     this.templateForm = this.fb.group({
       name: ['', Validators.required],
       exercises: this.fb.array([])
@@ -127,6 +128,7 @@ export class NewTemplateComponent implements OnInit {
       next: (response) => {
         console.log('Template added successfully', response);
         this._router.navigate(['/training'])
+        this._store.dispatch(resetWorkoutTemplate())
       },
       error: (error) => {
         console.log('Template not added successfully', error);

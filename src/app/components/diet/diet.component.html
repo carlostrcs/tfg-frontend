@@ -1,1 +1,52 @@
-<p>diet works!</p>
+<div class="container mt-2 login-form-container col-10 col-sm-10 col-md-6 col-lg-7 col-xl-7">
+  <h1 class="mb-5" style="color: white;">Diet</h1>
+
+  <!-- Botones -->
+  <div class="row">
+    <div class="col-12 col-md mb-3 mb-md-0">
+      <button type="button" class="btn btn-primary btn-lg w-100" [routerLink]="['/newTemplate']">+Food Today</button>
+    </div>
+    <div class="col-12 col-md mb-3 mb-md-0">
+      <button type="button" class="btn btn-secondary btn-lg w-100" [routerLink]="['/dietDayTemplate']">+Day Template</button>
+    </div>
+    <div class="col-12 col-md mb-3 mb-md-0">
+      <button type="button" class="btn btn-success btn-lg w-100" [routerLink]="['/newExercise']">+Custom Meal</button>
+    </div>
+    <div class="col-12 col-md">
+      <button type="button" class="btn btn-warning btn-lg w-100" [routerLink]="['/newExercise']">+Custom Food</button>
+    </div>
+  </div>
+
+  <!-- Lista de templates -->
+  <h3 class="mt-4">Template List</h3>
+  <div *ngFor="let template of templates" class="container-list login-form-container mb-4 p-3">
+    <h2 style="color: white;">{{ template.name }}</h2>
+    <div *ngFor="let meal of template.meals" class="meal-item mb-2">
+      <h3 class="ms-3">· {{ meal.name }}</h3>
+      <div class="row g-2">
+        <div class="d-flex flex-wrap">
+          <div *ngFor="let food of meal.foods" class="food-item p-2 ms-4">
+            <div class="food-item-content">
+              <p style="color: white;">{{ food.name }} - {{ food.grams }} grams</p>
+              <!-- Detalles completos mostrados solo en pantallas medianas y más grandes -->
+              <ul class="d-none d-md-block">
+                <p style="color: white;">Each 100g:</p>
+                <li style="color: white;">Proteins: {{ food.nutritionalInfo.proteins }}g</li>
+                <li style="color: white;">Fats: {{ food.nutritionalInfo.fats }}g</li>
+                <li style="color: white;">Carbs: {{ food.nutritionalInfo.carbs }}g</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="nutritional-info mt-3 ms-4">
+      <h4 style="color: white;">Template Resume</h4>
+      <ul>
+        <li style="color: white;">Proteins: {{ template.nutritionalInfo.proteins }}g</li>
+        <li style="color: white;">Fats: {{ template.nutritionalInfo.fats }}g</li>
+        <li style="color: white;">Carbs: {{ template.nutritionalInfo.carbs }}g</li>
+      </ul>
+    </div>
+  </div>
+</div>

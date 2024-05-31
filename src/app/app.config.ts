@@ -9,6 +9,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { errorReducer } from './store/error/error.reducer';
 import { contadorReducer } from './store/contador/contador.reducer';
 import { exercisesForTemplateReducer } from './store/exercisesForTemplate/exercisesForTemplate.reducer';
+import { mealsForTemplateReducer } from './store/mealsForTemplate/mealsForTemplate.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
@@ -27,6 +28,7 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: 'error', reducer:errorReducer }),
     provideState({ name: 'contador', reducer:contadorReducer }),
     provideState({ name: 'exercisesSelectedForTemplate', reducer:exercisesForTemplateReducer }),
+    provideState({ name: 'mealsSelectedForTemplate', reducer:mealsForTemplateReducer }),
     provideStoreDevtools({ 
       maxAge: 25,
       logOnly: !isDevMode(),

@@ -1,12 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { DatabaseService } from '../../services/database/database.service';
+import { Observable, of } from 'rxjs';
+import { AsyncPipe, NgFor, NgForOf, NgIf } from '@angular/common';
+import { FoodDayTemplate } from '../../models/diet/FoodDayTemplate';
 
 @Component({
   selector: 'app-diet',
   standalone: true,
-  imports: [],
+  imports: [RouterLink,NgFor,NgIf,AsyncPipe,NgForOf],
+  providers:[DatabaseService],
   templateUrl: './diet.component.html',
   styleUrl: './diet.component.css'
 })
-export class DietComponent {
+export class DietComponent implements OnInit{
 
+  templates:FoodDayTemplate[] = []
+  constructor(
+    private _databaseService:DatabaseService
+  ){}
+
+  ngOnInit() {
+    this.loadTemplates();
+  }
+
+  loadTemplates() {
+    this._databaseService.getDayFoodTemplates().subscribe((data)=>{
+      this.templates = data
+      console.log(this.templates)
+    })
+  }
 }

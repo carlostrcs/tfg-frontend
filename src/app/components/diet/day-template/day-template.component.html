@@ -1,0 +1,50 @@
+<div class="container login-form-container col-10 col-sm-10 col-md-6 col-lg-6 col-xl-5">
+    <h3 style="color: white;">New Day Food Template</h3>
+    <p>Fill in the data below.</p>
+    <!-- Formulario para el nombre de la template -->
+    <form [formGroup]="templateForm" (ngSubmit)="submitTemplate()">
+      <!-- <div class="mb-3">
+        <input type="text" class="form-control" id="templateName" formControlName="name" placeholder="Enter template name">
+        <div *ngIf="templateForm.get('name')?.invalid && templateForm.get('name')?.touched" class="text-danger">
+          Template name is required
+        </div>
+      </div> -->
+
+      <!-- NAME -->
+    <div class="mb-3 field">
+      <input type="text" class="form-control input" formControlName="name" id="inputName" placeholder="Name of the template"
+        [class.is-invalid]="isInvalid('name')">
+      <div *ngIf="isInvalid('name')" class="error-message">
+        <p *ngIf="templateForm.get('name')?.hasError('required')">Name field is required</p>
+      </div>
+    </div>
+  
+      <!-- Lista de meals -->
+      <div *ngIf="meals$ | async as mealsList">
+        <div *ngFor="let meal of mealsList" class="meal-item mb-2 p-2 border rounded">
+          <h3>{{ meal.name }}</h3>
+          <ul>
+            <li *ngFor="let food of meal.foods">
+              <p>{{ food.name }} - {{ food.grams }} grams</p>
+              <ul>
+                <li> <p>Proteins: {{ food.nutritionalInfo.proteins * food.grams }}</p> </li>
+                <li> <p>Fats: {{ food.nutritionalInfo.fats * food.grams }}</p> </li>
+                <li> <p>Carbs: {{ food.nutritionalInfo.carbs * food.grams }}</p> </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Botón para agregar una nueva meal -->
+      <div class="col-12 col-md mb-3 mb-md-0">
+        <button type="button" class="btn btn-primary btn-lg w-100" [routerLink]="['/selectMealsForTemplate']">+ Add Meal</button>
+      </div>
+      
+      <!-- Botón para guardar la template -->
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-success mt-3" [disabled]="templateForm.invalid">Save Template</button>
+      </div>
+    </form>
+  </div>
+  

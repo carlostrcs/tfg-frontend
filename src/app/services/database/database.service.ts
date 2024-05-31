@@ -5,6 +5,8 @@ import { AuthRequest } from '../../models/AuthRequest';
 import { environment } from '../../environment';
 import { Observable } from 'rxjs';
 import { Exercise } from '../../store/exercisesForTemplate/Exercise';
+import { Meal } from '../../models/diet/Meal';
+import { FoodDayTemplate } from '../../models/diet/FoodDayTemplate';
 
 @Injectable()
 export class DatabaseService {
@@ -37,4 +39,16 @@ export class DatabaseService {
     return this._http.post(`${environment.apiBaseUrl}/training/saveTrainingTemplate`, trainingTemplate.value)
   }
 
+  getDayFoodTemplates():Observable<FoodDayTemplate[]>{
+    return this._http.get<FoodDayTemplate[]>(`${environment.apiBaseUrl}/diet/getAllFoodDayTemplates`)
+  }
+
+  getMeals():Observable<Meal[]>{
+    return this._http.get<Meal[]>(`${environment.apiBaseUrl}/diet/getMealsList`)
+  }
+
+  saveFoodDayTemplate(foodDayTemplate:FormGroup){
+    console.log(foodDayTemplate.value)
+    return this._http.post(`${environment.apiBaseUrl}/diet/saveFoodDayTemplate`, foodDayTemplate.value)
+  }
 }

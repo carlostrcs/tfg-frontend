@@ -36,7 +36,7 @@ export class LoginComponent {
     if(!this.loginForm.invalid){
       this._databaseService.login(this.loginForm).subscribe({
         next: (response: any) => {
-          localStorage.setItem('authToken', response.token); // Guarda el token en localStorage
+          sessionStorage.setItem('authToken', response.token); // Guarda el token en sessionStorage
           this._authService.login(response.token);
           this._router.navigate(['/home'])
         },

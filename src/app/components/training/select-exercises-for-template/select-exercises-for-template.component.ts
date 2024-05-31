@@ -34,6 +34,7 @@ export class SelectExercisesForTemplateComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("ON INIT SELECT EXERCISES FOR TEMPLATE")
     this.exercises$ = this._databaseService.getExercises();
     this.exercises$.subscribe(exercises => {
       console.log('Exercises from service',exercises);

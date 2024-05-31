@@ -1,5 +1,5 @@
 <div class="container login-form-container col-10 col-sm-10 col-md-6 col-lg-6 col-xl-5">
-  <h3>New Template</h3>
+  <h3>New Workout Template</h3>
   <p>Fill in the data below.</p>
   <form [formGroup]="templateForm" (ngSubmit)="onSubmit()" style="border-width: 100px; border-color: white;">
     <!-- NAME -->
@@ -8,7 +8,6 @@
         [class.is-invalid]="isInvalid('name')">
       <div *ngIf="isInvalid('name')" class="error-message">
         <p *ngIf="templateForm.get('name')?.hasError('required')">Name field is required</p>
-        <p *ngIf="templateForm.get('name')?.hasError('minlength')">Name must be at least 5 characters long</p>
       </div>
     </div>
     
@@ -69,7 +68,7 @@
     </div>
 
     <div class="d-flex justify-content-end">
-      <button type="submit" class="btn btn-primary mt-3" (click)="saveTemplate()">Save Template</button>
+      <button type="submit" class="btn btn-success mt-3" [disabled]="templateForm.invalid" (click)="saveTemplate()">Save Template</button>
     </div>
     
   </form>
