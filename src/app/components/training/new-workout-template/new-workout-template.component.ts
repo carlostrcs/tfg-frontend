@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/app.state';
 import { selectExercisesForTemplate } from '../../../store/exercisesForTemplate/exercisesForTemplate.selector';
@@ -22,78 +22,73 @@ import { DatabaseService } from '../../../services/database/database.service';
 })
 export class NewTemplateComponent implements OnInit {
   templateForm: FormGroup;
-  exercisesFromStore$: Observable<Exercise[]>;
+  exercisesFromStore$: Observable<Exercise[]> = of([]);
   isSynchronized: boolean = false; // Flag to control synchronization
 
   constructor(
-    private fb: FormBuilder,
+    private _formBuilder: FormBuilder,
     private _store: Store<AppState>,
     private _databaseService:DatabaseService,
     private _router:Router
   ) {
     console.log("\nCREATING NEW WORKOUT TEMPLATE COMPONENT\n")
-    this.templateForm = this.fb.group({
+    this.templateForm = this._formBuilder.group({
       name: ['', Validators.required],
-      exercises: this.fb.array([])
+      exercises: this._formBuilder.array([])
     });
 
-    this.exercisesFromStore$ = this._store.select(selectExercisesForTemplate);
+    
   }
 
   ngOnInit() {
-    this.exercisesFromStore$.subscribe(exercises => {
-      console.log('Exercises from store',exercises)
-      // exercises.forEach(exercise => this.addExerciseFromStore(exercise));
-      if (!this.isSynchronized) {
-        this.syncExercisesWithStore(exercises);
+    this.exercisesFromStore$ = this._store.select(selectExercisesForTemplate)
+    console.log(this.exercisesFromStore$)
+    this.exercisesFromStore$.subscribe(exercises=>{
+      //if(!this.isSynchronized){
+        this.resetForm()
+        this.setExercisesFormArray(exercises);
         this.isSynchronized = true;
-      }
-    });
+      //}
+    })
+  }
+
+  setExercisesFormArray(exercises:Exercise[]){
+    const exercisesFormArray = this.templateForm.get('exercises') as FormArray;
+    exercises.forEach((exercise)=>{
+      const exerciseGroup = this._formBuilder.group({
+        name:[exercise.name,Validators.required],
+        series:this._formBuilder.array(exercise.series.map(serie => this._formBuilder.group({
+          repeticiones: [serie.repeticiones, Validators.required],
+          kilos: [serie.kilos, Validators.required],
+        })
+      ))
+      })
+      exercisesFormArray.push(exerciseGroup)
+    })
+  }
+
+  resetForm(): void {
+    this.templateForm.reset();
+    this.templateForm.setControl('exercises', this._formBuilder.array([]));
   }
 
   get exercises() {
     return this.templateForm.get('exercises') as FormArray;
   }
 
-  addExercise() {
-    const exerciseGroup = this.fb.group({
-      name: ['', Validators.required],
-      series: this.fb.array([])
-    });
-    //this.exercises.push(exerciseGroup);
-  }
 
   removeSeries(exerciseIndex: number, seriesIndex: number) {
     this.getSeries(exerciseIndex).removeAt(seriesIndex);
     this.updateExerciseInStore(exerciseIndex);
   }
 
-  addExerciseFromStore(exercise: Exercise) {
-    const seriesArray = this.fb.array(
-      exercise.series.map(serie => this.fb.group({
-        repeticiones: [serie.repeticiones, Validators.required],
-        kilos: [serie.kilos, Validators.required]
-      }))
-    );
-
-    const exerciseGroup = this.fb.group({
-      name: [exercise.name, Validators.required],
-      series: seriesArray
-    });
-    console.log('Ejercicios addExerciseFromStore',this.exercises)
-    this.exercises.push(exerciseGroup);
-  }
-
-  syncExercisesWithStore(exercises: Exercise[]) {
-    exercises.forEach(exercise => this.addExerciseFromStore(exercise));
-  }
 
   getSeries(exerciseIndex: number) {
     return this.exercises.at(exerciseIndex).get('series') as FormArray;
   }
 
   addSeries(exerciseIndex: number) {
-    const serieGroup = this.fb.group({
+    const serieGroup = this._formBuilder.group({
       repeticiones: ['', Validators.required],
       kilos: ['', Validators.required]
     });
@@ -135,5 +130,9 @@ export class NewTemplateComponent implements OnInit {
       }
     });
   }
+  }
+
+  clearTemplate(){
+    this._store.dispatch(resetWorkoutTemplate())
   }
 }

@@ -3,6 +3,7 @@ import { ExercisesForTemplateState } from "./exercisesForTemplate.state";
 import { addExercise, removeExercise, resetWorkoutTemplate, updateExerciseSeries } from "./exercisesForTemplate.action";
 
 export const initialExercisesForTemplateState:ExercisesForTemplateState = {
+    templateName:'',
     exercises_list:[]
 }
 

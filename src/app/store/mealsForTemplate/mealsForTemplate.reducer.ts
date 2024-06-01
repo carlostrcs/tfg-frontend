@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { MealsForTemplateState } from "./mealsForTemplate.state";
-import { addMeal, removeMeal, resetMealFoods, updateMealFoods } from "./mealsForTemplate.action";
+import { addMeal, removeMeal,  resetMealFoodsTemplate, updateMealFoods } from "./mealsForTemplate.action";
 
 export const initialMealsForTemplateState:MealsForTemplateState = {
     meals_list:[]
@@ -21,6 +21,6 @@ export const mealsForTemplateReducer = createReducer(
             i === index ? { ...meal, foods } : meal
           )
     })),
-    on(resetMealFoods, () => initialMealsForTemplateState)
+    on(resetMealFoodsTemplate, () => initialMealsForTemplateState)
     
 );

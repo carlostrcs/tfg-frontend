@@ -17,6 +17,6 @@ export const updateMealFoods = createAction(
     props<{ index: number, foods: Food[] }>()
  );
 
- export const resetMealFoods = createAction(
-  '[Meal] Reset Meal Foods'
+ export const resetMealFoodsTemplate = createAction(
+  '[Meal] Reset Meal Foods Template'
 );

@@ -6,3 +6,7 @@ export const selectExercisesForTemplateState = (state: AppState) => state.exerci
 export const selectExercisesForTemplate = createSelector(selectExercisesForTemplateState,
     state=>state.exercises_list
 )
+
+export const selectNameForTemplate = createSelector(selectExercisesForTemplateState,
+    state=>state.templateName
+)
