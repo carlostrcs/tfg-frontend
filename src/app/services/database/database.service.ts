@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { Exercise } from '../../store/exercisesForTemplate/Exercise';
 import { Meal } from '../../models/diet/Meal';
 import { FoodDayTemplate } from '../../models/diet/FoodDayTemplate';
+import { RestTrack } from '../../models/sleep/RestTrack';
+import { Food } from '../../models/diet/Food';
 
 @Injectable()
 export class DatabaseService {
@@ -51,4 +53,51 @@ export class DatabaseService {
     console.log(foodDayTemplate.value)
     return this._http.post(`${environment.apiBaseUrl}/diet/saveFoodDayTemplate`, foodDayTemplate.value)
   }
+
+  saveFood(food : Food){
+    return this._http.post<Food>(`${environment.apiBaseUrl}/diet/saveFood`, food);
+  }
+
+  deleteDietTemplate(foodDayTemplate:any){
+    this._http.delete(`${environment.apiBaseUrl}/diet/deleteFoodDayTemplate/${foodDayTemplate.id}`).subscribe({
+      next:(response)=>{console.log("Success deleting ",response)},
+      error:(error)=>{console.log("Error deleting ",error)}
+    })
+  }
+
+  deleteTrainingTemplate(trainingTemplate:any){
+    this._http.delete(`${environment.apiBaseUrl}/training/deleteTrainingTemplate/${trainingTemplate.id}`).subscribe({
+      next:(response)=>{console.log("Success deleting ",response)},
+      error:(error)=>{console.log("Error deleting ",error)}
+    })
+  }
+
+  saveTrainingWorkout(trainingWorkout:FormGroup){
+    console.log(trainingWorkout.value)
+    return this._http.post(`${environment.apiBaseUrl}/training/saveTrainingWorkout`, trainingWorkout.value)
+  }
+
+  saveCustomExercise(customExercise:FormGroup){
+    console.log(customExercise.value)
+    return this._http.post(`${environment.apiBaseUrl}/training/saveCustomExercise`, customExercise.value)
+  }
+  
+  getTodayRestTrack(){
+    return this._http.get<RestTrack>(`${environment.apiBaseUrl}/sleep/getTodayRestTrack`)
+  }
+
+  saveRestTrack(restTrack : RestTrack){
+    return this._http.post<RestTrack>(`${environment.apiBaseUrl}/sleep/saveRestTrack`, restTrack);
+  }
+
+  getFoods():Observable<Food[]>{
+    return this._http.get<Food[]>(`${environment.apiBaseUrl}/diet/getFoodsList`)
+  }
+
+  saveMeal(meal : FormGroup){
+    return this._http.post(`${environment.apiBaseUrl}/diet/saveMeal`, meal.value);
+  }
+
+
+  
 }

@@ -12,6 +12,9 @@ import { NewExerciseComponent } from './components/training/new-exercise/new-exe
 import { SelectExercisesForTemplateComponent } from './components/training/select-exercises-for-template/select-exercises-for-template.component';
 import { DayTemplateComponent } from './components/diet/day-template/day-template.component';
 import { SelectMealsForTemplateComponent } from './components/diet/select-meals-for-template/select-meals-for-template.component';
+import { NewFoodComponent } from './components/diet/new-food/new-food.component';
+import { NewMealComponent } from './components/diet/new-meal/new-meal.component';
+import { SelectFoodsForMealComponent } from './components/diet/select-foods-for-meal/select-foods-for-meal.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -27,5 +30,8 @@ export const routes: Routes = [
     {path:'newTemplate',component:NewTemplateComponent,canActivate:[AuthGuard]},
     {path:'selectExercisesForTemplate',component:SelectExercisesForTemplateComponent,canActivate:[AuthGuard]},
     {path:'newExercise',component:NewExerciseComponent,canActivate:[AuthGuard]},
+    {path:'newFood',component:NewFoodComponent,canActivate:[AuthGuard]},
+    {path:'newMeal',component:NewMealComponent,canActivate:[AuthGuard]},
+    {path:'selectFoodsForMeal',component:SelectFoodsForMealComponent,canActivate:[AuthGuard]},
     {path:'**',component:RegisterComponent}
 ];

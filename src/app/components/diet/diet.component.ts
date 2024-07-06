@@ -16,6 +16,7 @@ import { FoodDayTemplate } from '../../models/diet/FoodDayTemplate';
 export class DietComponent implements OnInit{
 
   templates:FoodDayTemplate[] = []
+  templates$:Observable<FoodDayTemplate[]> = of([])
   constructor(
     private _databaseService:DatabaseService
   ){}
@@ -29,5 +30,13 @@ export class DietComponent implements OnInit{
       this.templates = data
       console.log(this.templates)
     })
+    
+  }
+
+  deleteTemplate(template: any) {
+    // Lógica para eliminar la template
+    console.log('Deleting template:', template);
+    this._databaseService.deleteDietTemplate(template);
+    window.location.reload()
   }
 }

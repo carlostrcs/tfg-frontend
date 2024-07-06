@@ -20,3 +20,8 @@ export const updateExerciseSeries = createAction(
 export const resetWorkoutTemplate = createAction(
   '[Exercises] Reset Workout Template'
 )
+
+export const updateTemplateName = createAction(
+  '[Exercises] Update Template Name',
+  props<{ name: string}>()
+);

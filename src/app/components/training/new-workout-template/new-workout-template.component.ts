@@ -60,8 +60,9 @@ export class NewTemplateComponent implements OnInit {
         series:this._formBuilder.array(exercise.series.map(serie => this._formBuilder.group({
           repeticiones: [serie.repeticiones, Validators.required],
           kilos: [serie.kilos, Validators.required],
-        })
-      ))
+          })
+        )),
+        details:[exercise.details]
       })
       exercisesFormArray.push(exerciseGroup)
     })
@@ -134,5 +135,6 @@ export class NewTemplateComponent implements OnInit {
 
   clearTemplate(){
     this._store.dispatch(resetWorkoutTemplate())
+    
   }
 }

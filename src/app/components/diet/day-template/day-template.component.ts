@@ -11,6 +11,7 @@ import { Store } from '@ngrx/store';
 import { selectMealsForTemplate } from '../../../store/mealsForTemplate/mealsForTemplate.selector';
 import { removeMeal, resetMealFoodsTemplate } from '../../../store/mealsForTemplate/mealsForTemplate.action';
 import { DatabaseService } from '../../../services/database/database.service';
+import { NutritionalInfo } from '../../../models/diet/NutritionalInfo';
 
 @Component({
   selector: 'app-day-template',
@@ -65,9 +66,11 @@ export class DayTemplateComponent implements OnInit {
           nutritionalInfo: this._formBuilder.group({
             proteins: [food.nutritionalInfo.proteins, Validators.required],
             fats: [food.nutritionalInfo.fats, Validators.required],
-            carbs: [food.nutritionalInfo.carbs, Validators.required]
+            carbs: [food.nutritionalInfo.carbs, Validators.required],
+            calories:[food.nutritionalInfo.calories, Validators.required]
           })
-        })))
+        }))),
+        nutritionalInfo: this.getNutritionalInfoFromMeal(meal)
       });
       console.log(mealGroup)
       mealFormArray.push(mealGroup);
@@ -111,6 +114,16 @@ export class DayTemplateComponent implements OnInit {
   }
 
   clearTemplate(){
+    
     this._store.dispatch(resetMealFoodsTemplate())
   }
+
+  getNutritionalInfoFromMeal(meal:Meal){
+    let nutritionalInfo:NutritionalInfo = new NutritionalInfo()
+    meal.foods.forEach((food)=>{
+      nutritionalInfo.add(food.nutritionalInfo)
+    })
+    return nutritionalInfo;
+  }
+  
 }

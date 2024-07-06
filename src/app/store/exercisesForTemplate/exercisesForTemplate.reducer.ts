@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { ExercisesForTemplateState } from "./exercisesForTemplate.state";
-import { addExercise, removeExercise, resetWorkoutTemplate, updateExerciseSeries } from "./exercisesForTemplate.action";
+import { addExercise, removeExercise, resetWorkoutTemplate, updateExerciseSeries, updateTemplateName } from "./exercisesForTemplate.action";
 
 export const initialExercisesForTemplateState:ExercisesForTemplateState = {
     templateName:'',
@@ -22,6 +22,9 @@ export const exercisesForTemplateReducer = createReducer(
             i === index ? { ...exercise, series } : exercise
           )
     })),
-    on(resetWorkoutTemplate, () => initialExercisesForTemplateState)
+    on(resetWorkoutTemplate, () => initialExercisesForTemplateState),
+    on(updateTemplateName,(state,{name})=>({
+        ...state,templateName: name
+    })),
     
 );

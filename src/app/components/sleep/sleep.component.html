@@ -1,1 +1,46 @@
-<p>sleep works!</p>
+<div class="container login-form-container col-10 col-sm-10 col-md-6 col-lg-6 col-xl-5">
+    <h3>Today's Rest Track</h3>
+    <form *ngIf="!currentRestTrack; else viewOnlyTrack" [formGroup]="restTrackForm" (ngSubmit)="saveRestTrack()">
+      <div class="mb-3 row" *ngFor="let key of objectKeys(restTrackForm.controls)">
+        <h5 class="col-sm-6" style="color: white;">{{ key | camelCaseToWords }}</h5>
+        <div class="col-sm-6">
+          <input 
+            *ngIf="key === 'hoursSlept' || key === 'timesWokeUp'" 
+            type="number" 
+            class="form-control" 
+            [formControlName]="key" 
+            [id]="key" 
+            [placeholder]="key | camelCaseToWords" 
+          />
+          <select 
+            *ngIf="key !== 'hoursSlept' && key !== 'timesWokeUp'" 
+            class="form-select" 
+            [formControlName]="key" 
+            [id]="key">
+            <option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10]" [value]="i">{{ i }}</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success w-100 mt-3" [disabled]="restTrackForm.invalid">Save Track</button>
+    </form>
+  
+    <ng-template #viewOnlyTrack>
+        <div class="mb-3">
+            <h5 class="" style="color: white;">Date: {{currentRestTrack.date }}</h5>
+            <h5 class="" style="color: white;">Hours Slept: {{currentRestTrack.hoursSlept }}h</h5>
+            <h5 class="" style="color: white;">Times Woke Up: {{currentRestTrack.timesWokeUp }}</h5>
+            <h5 class="" style="color: white;">Subjective Recovery: {{currentRestTrack.subjectiveRecovery }}</h5>
+            <h5 class="" style="color: white;">Chest Fatigue: {{currentRestTrack.chestFatigue }}</h5>
+            <h5 class="" style="color: white;">Back Fatigue: {{currentRestTrack.backFatigue }}</h5>
+            <h5 class="" style="color: white;">Quadriceps Fatigue: {{currentRestTrack.quadricepsFatigue }}</h5>
+            <h5 class="" style="color: white;">Femoral Fatigue: {{currentRestTrack.femoralFatigue }}</h5>
+            <h5 class="" style="color: white;">Calfs Fatigue: {{currentRestTrack.calfsFatigue }}</h5>
+            <h5 class="" style="color: white;">Biceps Fatigue: {{currentRestTrack.bicepsFatigue }}</h5>
+            <h5 class="" style="color: white;">Triceps Fatigue: {{currentRestTrack.tricepsFatigue }}</h5>
+            <h5 class="" style="color: white;">Forearms Fatigue: {{currentRestTrack.forearmsFatigue }}</h5>
+            <h5 class="" style="color: white;">Shoulders Fatigue: {{currentRestTrack.shouldersFatigue }}</h5>
+            <h5 class="" style="color: white;">Motivation: {{currentRestTrack.motivation }}</h5>
+        </div>
+    </ng-template>
+  </div>
+  

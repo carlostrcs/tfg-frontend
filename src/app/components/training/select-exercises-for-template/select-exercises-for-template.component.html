@@ -1,7 +1,7 @@
 <!-- select-exercises-for-template.component.html -->
 <!-- select-exercises-for-template.component.html -->
 <div class="container login-form-container col-10 col-sm-10 col-md-6 col-lg-6 col-xl-5">
-  <h3 class="my-4">Select Exercises for Template</h3>
+  <h3 class="my-4">Select Exercises</h3>
   <form [formGroup]="form" (ngSubmit)="anadirEjercicios()">
     <div formArrayName="ejercicios">
       <div *ngFor="let control of ejerciciosArray.controls; let i = index" class="exercise-item d-flex align-items-center mb-3 p-2 border rounded">

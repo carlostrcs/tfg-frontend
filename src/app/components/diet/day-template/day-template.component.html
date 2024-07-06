@@ -32,9 +32,9 @@
           <li *ngFor="let food of meal.get('foods')?.value">
             <p>{{ food.name }} - {{ food.grams }} grams</p>
             <ul>
-              <li> <p>Proteins: {{ food.nutritionalInfo.proteins * food.grams }}</p> </li>
-              <li> <p>Fats: {{ food.nutritionalInfo.fats * food.grams }}</p> </li>
-              <li> <p>Carbs: {{ food.nutritionalInfo.carbs * food.grams }}</p> </li>
+              <li> <p>Proteins: {{ food.nutritionalInfo.proteins }}</p> </li>
+              <li> <p>Fats: {{ food.nutritionalInfo.fats }}</p> </li>
+              <li> <p>Carbs: {{ food.nutritionalInfo.carbs }}</p> </li>
             </ul>
           </li>
         </ul>
@@ -51,8 +51,8 @@
       <button type="submit" class="btn btn-success mt-3" [disabled]="templateForm.invalid">Save Template</button>
     </div> -->
     <div class="d-flex justify-content-end mt-3">
-      <button type="button" class="btn btn-danger me-2" [disabled]="templateForm.invalid" (click)="clearTemplate()">Clear Template</button>
+      <button type="button" class="btn btn-danger me-2" (click)="clearTemplate()">Clear Template</button>
       <button type="submit" class="btn btn-success" [disabled]="templateForm.invalid" (click)="submitTemplate()">Save Template</button>
     </div>
-  </form>
+  </form>S
 </div>

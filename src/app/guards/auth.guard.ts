@@ -10,7 +10,7 @@ export const AuthGuard = () => {
   if(sessionStorage.getItem('authToken')){
     return true;
   }else{
-    router.navigate(['/login']);
+    router.navigate(['/register']);
     return false;
   }
 };

@@ -1,0 +1,53 @@
+<div class="container login-form-container col-10 col-sm-10 col-md-6 col-lg-6 col-xl-5">
+    <h3>New Food</h3>
+    <form [formGroup]="foodForm" (ngSubmit)="onSubmit()">
+      <!-- Name -->
+      <div class="mb-4 field">
+        <p for="name" class="form-label">Name</p>
+        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter food name" />
+        <div *ngIf="isInvalid('name')" class="error-message">
+            <p *ngIf="foodForm.get('name')?.hasError('required')">Name field is required</p>
+        </div>
+      </div>
+      
+      
+      <!-- Nutritional Info -->
+      <h4 style="color: white;">Nutritional Information (each 100g)</h4>
+      
+      <div class="mb-4 field" formGroupName="nutritionalInfo">
+        <p for="proteins" class="form-label">Proteins (g)</p>
+        <input type="number" class="form-control" formControlName="proteins" id="proteins" placeholder="Enter proteins" />
+        <div *ngIf="isInvalid('proteins')" class="error-message">
+            <p *ngIf="foodForm.get('proteins')?.hasError('required')">Proteins field is required</p>
+        </div>
+      </div>
+      
+      <div class="mb-4 field" formGroupName="nutritionalInfo">
+        <p for="fats" class="form-label">Fats (g)</p>
+        <input type="number" class="form-control" formControlName="fats" id="fats" placeholder="Enter fats" />
+        <div *ngIf="isInvalid('fats')" class="error-message">
+            <p *ngIf="foodForm.get('fats')?.hasError('required')">Fats field is required</p>
+        </div>
+      </div>
+      
+      <div class="mb-4 field" formGroupName="nutritionalInfo">
+        <p for="carbs" class="form-label">Carbs (g)</p>
+        <input type="number" class="form-control" formControlName="carbs" id="carbs" placeholder="Enter carbs" />
+        <div *ngIf="isInvalid('carbs')" class="error-message">
+            <p *ngIf="foodForm.get('carbs')?.hasError('required')">Carbs field is required</p>
+        </div>
+      </div>
+      
+      <div class="mb-4 field" formGroupName="nutritionalInfo">
+        <p for="calories" class="form-label">Calories (kcal)</p>
+        <input type="number" class="form-control" formControlName="calories" id="calories" placeholder="Enter calories" />
+        <div *ngIf="isInvalid('calories')" class="error-message">
+            <p *ngIf="foodForm.get('calories')?.hasError('required')">Calories field is required</p>
+        </div>
+      </div>
+  
+      <!-- Save Button -->
+      <button type="submit" class="btn btn-success w-100 mt-3" [disabled]="foodForm.invalid">Save Food</button>
+    </form>
+  </div>
+  

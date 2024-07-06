@@ -42,4 +42,11 @@ export class TrainingComponent implements OnInit {
       }
     })
   }
+
+  deleteTemplate(template: any) {
+    // Lógica para eliminar la template
+    console.log('Deleting template:', template);
+    this._databaseService.deleteTrainingTemplate(template);
+    window.location.reload()
+  }
 }

@@ -10,6 +10,7 @@ import { errorReducer } from './store/error/error.reducer';
 import { contadorReducer } from './store/contador/contador.reducer';
 import { exercisesForTemplateReducer } from './store/exercisesForTemplate/exercisesForTemplate.reducer';
 import { mealsForTemplateReducer } from './store/mealsForTemplate/mealsForTemplate.reducer';
+import { foodsForMealReducer } from './store/foodsForMeal/foodsForMeal.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
@@ -29,6 +30,7 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: 'contador', reducer:contadorReducer }),
     provideState({ name: 'exercisesSelectedForTemplate', reducer:exercisesForTemplateReducer }),
     provideState({ name: 'mealsSelectedForTemplate', reducer:mealsForTemplateReducer }),
+    provideState({ name: 'foodsSelectedForMeal', reducer:foodsForMealReducer }),
     provideStoreDevtools({ 
       maxAge: 25,
       logOnly: !isDevMode(),

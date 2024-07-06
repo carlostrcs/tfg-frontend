@@ -3,8 +3,8 @@
   <p>Fill in the data below.</p>
   <form [formGroup]="templateForm" (ngSubmit)="onSubmit()" style="border-width: 100px; border-color: white;">
     <!-- NAME -->
-    <div class="mb-3 field">
-      <input type="text" class="form-control input" formControlName="name" id="inputName" placeholder="Name of the template"
+    <div class="mb-4 field">
+      <input type="text" class="form-control input" formControlName="name" id="inputNameOfTemplate" placeholder="Name of the template"
         [class.is-invalid]="isInvalid('name')">
       <div *ngIf="isInvalid('name')" class="error-message">
         <p *ngIf="templateForm.get('name')?.hasError('required')">Name field is required</p>
@@ -18,7 +18,7 @@
         <div class="exercise-header row mb-2">
           <!-- Name of the exercise -->
           <div class="col-lg-11 mb-2">
-            <input type="text" class="form-control input" formControlName="name" id="inputName" placeholder="Name of the exercise">
+            <input type="text" class="form-control input" formControlName="name" id="inputNameOfExercise" placeholder="Name of the exercise">
           </div>
           <!-- Remove exercise button -->
           <div class="col-lg-1">
@@ -30,6 +30,11 @@
             </button>
           </div>
         </div>
+        <div class="row">
+          <div class="col-lg-12 mb-2">
+            <input type="text" class="form-control input" formControlName="details" id="inputDetails" placeholder="Details of the exercise">
+          </div>
+        </div>
         <div class="exercise-series col-lg-12" formArrayName="series">
           <div *ngFor="let serie of getSeries(i).controls; index as j" [formGroupName]="j" class="series-block">
             <!-- Repeticiones and Kilos in the same line -->
@@ -38,7 +43,7 @@
                 <p>{{ j + 1 }}</p>
               </div>
               <div class="col-lg-5 col-5">
-                <input type="number" class="form-control input" formControlName="repeticiones" id="inputRepeticiones" placeholder="Repeticiones">
+                <input type="number" class="form-control input" formControlName="repeticiones" id="inputRepeticiones" placeholder="Repetitions">
               </div>
               <div class="col-lg-5 col-5">
                 <input type="number" class="form-control input" formControlName="kilos" id="inputKilos" placeholder="Kilos">
@@ -68,7 +73,7 @@
     </div>
 
     <div class="d-flex justify-content-end mt-3">
-      <button type="button" class="btn btn-danger me-2" [disabled]="templateForm.invalid" (click)="clearTemplate()">Clear Template</button>
+      <button type="button" class="btn btn-danger me-2"  (click)="clearTemplate()">Clear Template</button>
       <button type="submit" class="btn btn-success" [disabled]="templateForm.invalid" (click)="saveTemplate()">Save Template</button>
     </div>
     

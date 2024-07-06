@@ -1,0 +1,64 @@
+<div class="container login-form-container col-10 col-sm-10 col-md-6 col-lg-6 col-xl-5">
+    <h3 style="color: white;">New Meal</h3>
+    <p>Fill in the data below.</p>
+    <!-- Formulario para el nombre de la meal -->
+    <form [formGroup]="mealForm" (ngSubmit)="saveMeal()">
+      <!-- NAME -->
+      <div class="mb-3 field">
+        <input type="text" class="form-control input" formControlName="name" id="inputName" placeholder="Name of the meal"
+          [class.is-invalid]="isInvalid('name')">
+        <div *ngIf="isInvalid('name')" class="error-message">
+          <p *ngIf="mealForm.get('name')?.hasError('required')">Name field is required</p>
+        </div>
+      </div>
+  
+      <!-- Lista de foods -->
+      <!-- Lista de meals -->
+    <div formArrayName="foods">
+        <div *ngFor="let food of foodsFormArray.controls; index as i" [formGroupName]="i" class="meal-item mb-2 p-2 login-form-container">
+          <div class="row d-flex align-items-center justify-content-between">
+            <div class="col">
+              <h3>{{ food.get('name')?.value }}</h3>
+            </div>
+            <div class="col-auto">
+              <button type="button" class="btn btn-danger" (click)="removeFood(i)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <ul>
+            <input type="number" class="form-control mt-3 mb-2" formControlName="grams" id="grams" placeholder="Enter grams" [class.is-invalid]="isInvalid('grams')"/>
+              <ul class="p-0">
+                <li> <p>Proteins: {{ food.get('nutritionalInfo')?.value.proteins }}</p> </li>
+                <li> <p>Fats: {{ food.get('nutritionalInfo')?.value.fats }}</p> </li>
+                <li> <p>Carbs: {{ food.get('nutritionalInfo')?.value.carbs }}</p> </li>
+              </ul>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Botón para agregar una nueva food -->
+      <div class="col-12 col-md mb-3 mb-md-0">
+        <button type="button" class="btn btn-primary btn-lg w-100" [routerLink]="['/selectFoodsForMeal']">+ Add Food</button>
+      </div>
+  
+      <!-- Botón para guardar la meal -->
+      <div class="row d-flex justify-content-between align-items-center mt-3">
+        <div class="nutritional-summary col-auto">
+          <h5 style="color: white;">Meal Nutritional Info:</h5>
+          <p>Proteins: {{ getNutritionalInfoFromMeal().proteins.toFixed(2) }}g</p>
+          <p>Fats: {{ getNutritionalInfoFromMeal().fats.toFixed(2) }}g</p>
+          <p>Carbs: {{ getNutritionalInfoFromMeal().carbs.toFixed(2) }}g</p>
+          <p>Calories: {{ getNutritionalInfoFromMeal().calories.toFixed(2) }}kcal</p>
+        </div>
+        <div class="col-auto d-flex align-items-center">
+          <button type="button" class="btn btn-danger me-2" (click)="clearMeal()">Clear Meal</button>
+          <button type="submit" class="btn btn-success" [disabled]="mealForm.invalid">Save Meal</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  

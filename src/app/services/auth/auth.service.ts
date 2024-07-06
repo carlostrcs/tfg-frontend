@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { environment } from "../../environment";
@@ -30,8 +30,22 @@ import { environment } from "../../environment";
     }
 
     deleteAccount(): void {
-        sessionStorage.removeItem('authToken');
-        this.authStatus.next(false);
+        const token = sessionStorage.getItem('authToken');
+        if (token) {
+            const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+            this._http.delete(`${environment.apiBaseUrl}/auth/deleteAccount`, { headers }).subscribe({
+                next: () => {
+                    console.log("Account deleted successfully");
+                    sessionStorage.removeItem('authToken');
+                    this.authStatus.next(false);
+                },
+                error: (error) => {
+                    console.error('Error deleting account', error);
+                }
+            });
+        } else {
+            console.error('No auth token found');
+        }
     }
 
     isValidToken():boolean{

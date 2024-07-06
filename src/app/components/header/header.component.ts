@@ -32,13 +32,6 @@ export class HeaderComponent implements OnInit{
     });
   }
 
-  prueba(){
-    console.log('Salir')
-    this._http.get<any>("http://localhost:3000/salir").subscribe(
-      next=>{console.log('Correct: ',next)},
-      error=>{console.log('Error: ',error)}
-    )
-  }
   openModal(message:string): void {
     // Usa el ID de tu modal para obtener el elemento
     // const miModalElement = document.getElementById('myModal');
